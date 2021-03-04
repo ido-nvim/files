@@ -4,6 +4,7 @@ local main = require("ido.core.main")
 local ui = require("ido.core.ui")
 
 local pkg = ido.pkg
+local DEFAULT_COMMAND = "ls -AF --group-directories-first "
 
 --- Escape the file or directory path and resolve it
 -- @param item The file/directory path
@@ -15,13 +16,12 @@ end
 --- Get list of files and directories
 -- @param directory The directory
 -- @return output of ls with some opts
-local function list(directory)
-   return vim.fn.systemlist("ls -AF --group-directories-first "..escape(directory))
+local function list(command, directory)
+   return vim.fn.systemlist(command..escape(directory))
 end
 
 -- File browser
-local function browse()
-
+local function browse(pkg_opts)
    -- Do not exit on accept, instead do this
    advice.set("exit_on_accept_selected", "overwrite", function ()
       local vars = ido.sandbox.vars
@@ -43,7 +43,7 @@ local function browse()
 
          -- Change to the directory
          opts.prompt = opts.prompt..selected
-         vars.items = list(opts.prompt:sub(9, -1))
+         vars.items = list(pkg_opts.command, opts.prompt:sub(9, -1))
 
          -- Clear the query
          vars.before_cursor = ""
@@ -77,7 +77,7 @@ local function browse()
          end
 
          opts.prompt = opts.prompt:gsub("[^/]*/$", "")
-         vars.items = list(opts.prompt:sub(9, -1))
+         vars.items = list(pkg_opts.command, opts.prompt:sub(9, -1))
          main.async(main.get_results)
       end
 
@@ -93,7 +93,7 @@ local function browse()
 
          -- Change to the directory
          opts.prompt = opts.prompt..vars.before_cursor..vars.after_cursor
-         vars.items = list(opts.prompt:sub(9, -1))
+         vars.items = list(pkg_opts.command, opts.prompt:sub(9, -1))
 
          -- Clear the query
          vars.before_cursor = ""
@@ -120,7 +120,7 @@ local function browse()
    directory = directory:gsub("/$", "").."/"
 
    pkg.start({
-      items = list(directory),
+      items = list(pkg_opts.command, directory),
       prompt = "Browse: "..directory,
    })
 
@@ -130,7 +130,9 @@ end
 -- Setup the package
 pkg.new("browse", {
    main = browse,
-
+   pkg_opts = {
+      command = DEFAULT_COMMAND
+   },
    disable = {
       "prompt"
    }
