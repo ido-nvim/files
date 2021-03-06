@@ -26,12 +26,12 @@ where `MODNAME` is one of the three modules shown above
 The settings in this package
 
 | Browse settings | Description | Default value |
-| ------ ------- | ----------- | ------- ----- |
+| -------------- | ----------- | ------------- |
 | `ls_flags` | The flags passed to `ls` | `"-AF --group-directories-first"` |
 | `prompt_header` | The header before the prompt | `"Browse: "` |
 
 | Search settings | Description | Default value |
-| ------ ------- | ----------- | ------- ----- |
+| -------------- | ----------- | ------------- |
 | `fd_flags` | The flags passed to `fd` | `""` |
 
 ## Optional arguments for `browse` and `navigate`
@@ -41,7 +41,7 @@ The settings in this package
 
 where `CWD` is the directory name, and `MODNAME` is the module name.
 
-## Arguments for `search`
+## Optional arguments for `search`
 The search module takes a table of options:
 
 Fields:
