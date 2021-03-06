@@ -1,7 +1,7 @@
 # Files
 Contains file and directory related narrowing functions for Ido.
 
-Introduces the following packages
+Introduces the following modules:
 - `navigate` Change the directory of Vim
 - `search` Search for files/directories
 - `browse` File browser
@@ -17,7 +17,7 @@ require("ido").setup{
 
 ## Run
 ```vim
-:lua require("ido").module.run("MODNAME")
+:lua require("ido").module.run(MODNAME)
 ```
 
 where `MODNAME` is one of the three modules shown above
