@@ -1,23 +1,23 @@
 # Files
-Contains file and directory related narrowing functions for Ido
+Contains file and directory related narrowing functions for Ido.
 
 Introduces the following packages
-- `change_dir`
-- `find_files`
-- `browse`
+- `navigate` Change the directory of Vim
+- `search` Search for files/directories
+- `browse` File browser
+
+## Quick setup
+```lua
+require("ido").setup{
+   packages = {
+      files = {}
+   }
+}
+```
 
 ## Run
 ```vim
-:lua require("ido").pkg.run(PKG_NAME)
+:lua require("ido").module.run("MODNAME")
 ```
 
-where `PKG_NAME` is the package you wish to run
-
-## Keybindings
-```vim
-:lua require("ido").pkg.setup(PKG_NAME, {{bind = KEY_BIND}})
-```
-
-where
-- `PKG_NAME` is the package name
-- `KEY_BIND` is the keybinding in standard vim notation `:h key-notation`
+where `MODNAME` is one of the three modules shown above
