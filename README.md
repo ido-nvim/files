@@ -17,7 +17,7 @@ require("ido").setup{
 
 ## Run
 ```vim
-:lua require("ido").module.run(MODNAME)
+:lua require("ido").module.run("files/MODNAME")
 ```
 
 where `MODNAME` is one of the three modules shown above
@@ -36,7 +36,7 @@ The settings in this package
 
 ## Optional arguments for `browse` and `navigate`
 ```vim
-:lua require("ido").module.run(MODNAME, CWD)
+:lua require("ido").module.run("files/MODNAME", CWD)
 ```
 
 where `CWD` is the directory name, and `MODNAME` is the module name.
