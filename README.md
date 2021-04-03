@@ -7,6 +7,17 @@ Introduces the following modules:
 - `browse` File browser
 
 ## Quick setup
+- Install the plugin:
+
+| Manager | Command |
+| [`plug`](https://github.com/junegunn/vim-plug) | `Plug 'ido-nvim/files'` |
+| [`vundle`](https://github.com/VundleVim/Vundle.vim) | `Plugin 'ido-nvim/files'` |
+| [`dein`](https://github.com/Shougo/dein.vim) | `call dein#add('ido-nvim/files')` |
+| [`minpac`](https://github.com/k-takata/minpac) | `call minpac#add('ido-nvim/files')` |
+| [`packer`](https://github.com/wbthomason/packer.nvim) | `use 'ido-nvim/files'` |
+
+Setup the package:
+
 ```lua
 require("ido").setup{
    packages = {
@@ -50,3 +61,40 @@ Fields:
 - `cmd` Command to execute on the found item
 
 - `items` The item type to pass to `fd -t`, defaults to `"f"`
+
+## Example configuration
+The following snippet is in lua, ***not*** vimL.
+
+```lua
+require("ido").setup{
+   packages = {
+
+      -- Configure the `files` package
+      files = {
+
+         -- The `browse` module configuration
+         browse = {
+
+            -- The settings, see above for explanation
+            settings = {
+               ls_flags = "-AF"
+            },
+
+            -- The binding, like doing `noremap` in VimL
+            binding = {
+               key = "<Leader>."
+            }
+         },
+
+         -- The `search` module configuration
+         search = {
+
+            -- The ido options
+            options = {
+               prompt = "Files> "
+            },
+         }
+      }
+   }
+}
+```
